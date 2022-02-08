@@ -17,6 +17,7 @@
         echo "<h1>Välkommen {$namn}!</h1>";
         echo "<p>Namnet $namn innehåller ", strlen($namn), "tecken.<p>";
     }
+    ?>
     
 </body>
 </html>
