@@ -15,7 +15,7 @@
     else{
         $namn=filter_input(INPUT_GET, 'namn');
         echo "<h1>Välkommen {$namn}!</h1>";
-        echo "<p>Namnet $namn innehåller ", strlen($namn), "tecken.<p>";
+        echo "<p>Namnet $namn innehåller ", strlen($namn), " tecken.<p>";
     }
     ?>
     
