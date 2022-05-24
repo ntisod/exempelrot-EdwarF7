@@ -1,5 +1,5 @@
 <?php
-require("includes/wsp1-functions.php");
+require("../includes/wsp1-functions.php");
 
 // define variables and set to empty values
 $pwErr = $pwTestErr = $usernameErr = "";
@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   //Kontrollera om det inte finns errors
   if($errors<1){
     //Skicka data till databasen
-    require("includes/settings.php");
+    require("../includes/settings.php");
     
     try {
       $conn = new PDO("mysql:host=$servername;dbname=$dbname", $dbuser, $dbpw);
@@ -68,7 +68,7 @@ function test_input($data) {
   return $data;
 } 
 $title = "Registrera ny användare";
-include("templates/head.php");
+include("../templates/head.php");
 
 ?>
 
@@ -83,14 +83,14 @@ include("templates/head.php");
   </p>
   
   <p>
-    <label for="pw"> Lösenord:</label> 
-    <input id="password" type="password" name="pw" value="<?php echo $pw;?>">
+    <label for="pw"> Lösenord: </label>
+    <input id="pw" type="password" name="pw" value="<?php echo $pw;?>">
     <span class="error">* <?php echo $pwErr;?></span>
   </p>
 
   <p>
     <label for="pwTest"> Lösenord en gång till:</label> 
-    <input id="password" type="password" name="pwTest" value="<?php echo $pwTest;?>">
+    <input id="pwTest" type="password" name="pwTest" value="<?php echo $pwTest;?>">
     <span class="error">* <?php echo $pwTestErr;?></span>
   </p>
   <br><br>
@@ -98,7 +98,7 @@ include("templates/head.php");
 </form>
 
 <?php
-include "templates/foot.php";
+include "../templates/foot.php";
 
 ?>
 

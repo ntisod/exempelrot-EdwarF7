@@ -1,5 +1,5 @@
 <?php
-require("includes/wsp1-functions.php");
+require("../includes/wsp1-functions.php");
 
 // define variables and set to empty values
 $pwErr = $usernameErr = "";
@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   //Kontrollera om det inte finns errors
   if($errors<1){
     //Hämta db-inställningar
-    require("includes/settings.php");
+    require("../includes/settings.php");
     
     //Hämta hashat lösenord från DB
     try {
@@ -73,7 +73,7 @@ function test_input($data) {
 } 
 
 $title = "Logga in";
-include("templates/head.php");
+include("../templates/head.php");
 
 ?>
 
@@ -89,7 +89,7 @@ include("templates/head.php");
   
   <p>
     <label for="pw"> Lösenord:</label> 
-    <input id="password" type="password" name="pw" value="<?php echo $pw;?>">
+    <input id="pw" type="password" name="pw" value="<?php echo $pw;?>">
     <span class="error">* <?php echo $pwErr;?></span>
   </p>
 
@@ -99,7 +99,7 @@ include("templates/head.php");
 
 <?php
 
-include "templates/foot.php";
+include "../templates/foot.php";
 
 ?>
 
