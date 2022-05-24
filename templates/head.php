@@ -16,7 +16,7 @@
         <a href="login.php">Logga in</a>
         <a href="reg.php">Registrera</a>
         <a href="logout.php">Logga ut</a>
-        <a href="#about">About</a>
+        <a href="#about">Om mig</a>
         <a href="javascript:void(0);" class="icon" onclick="hideTopNav()">
             <i class="fa fa-bars"></i>
         </a>

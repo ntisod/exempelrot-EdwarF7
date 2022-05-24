@@ -1,6 +1,6 @@
 <?php
 
-include("../templates/head.php");
+include("templates/head.php");
 
 ?>
     <h2>Välkommen!</h2>

@@ -13,9 +13,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $errors++;
   } else {
     $username = test_input($_POST["username"]);
-      if(!testUserExist($username)){
-        $usernameErr = " Användarnamnet finns inte i databasen.";
-        $errors++;
+    if(!testUserExist($username)){
+    $usernameErr = "Användarnamnet Finns inte.";
+    $errors++;  
     }
   }
 
@@ -24,37 +24,45 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $errors++;
   } else{
     $pw = $_POST["pw"];
-    }
-  }
 
-  echo "Antal fel: $errors" ;
-    
+  }
+  
   //Kontrollera om det inte finns errors
   if($errors<1){
     //Hämta db-inställningar
     require("includes/settings.php");
     
+    //Hämta hashat lösenord från DB
     try {
       $conn = new PDO("mysql:host=$servername;dbname=$dbname", $dbuser, $dbpw);
       // set the PDO error mode to exception
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      $hashed_pw = password_hash($pw, PASSWORD_DEFAULT);
-      $sql = "SELECT password FROM users WHERE username = '$username'";
-      // use exec() because no results are returned
-      $conn->exec($sql);
-      echo ".";
+      $sql = "SELECT password FROM users WHERE username = :username LIMIT 1";
 
+      $stmt = $conn->prepare($sql);
+      $stmt->bindValue("username", $username);
+      $stmt->execute();
 
+      // set the resulting array to associative
+      $resultat = $stmt->fetch(PDO::FETCH_ASSOC);
+
+      //Kolla om inskrivet lösenord stämmer överens med lösenordet i DB.
+      $verified = password_verify($pw, $resultat["password"]);
+ 
+      //Låt olika saker hända beroende på om man skrivit rätt lösenord eller inte
+      if($verified){
+        //Ta oss till en annan sida
+        header("Location: welcome.php");   
+    } else{
+          echo "Fel lösenord, eller användarnamn.";
+      }
+  
     } catch(PDOException $e) {
       echo $sql . "<br>" . $e->getMessage();
     }
 
-    include("templates/head.php");
-
     $conn = null;
-    //Tar oss till en annan sida
-    header("Location: welcome.php");
-
+  }
 }
 
 function test_input($data) {
@@ -63,6 +71,9 @@ function test_input($data) {
   $data = htmlspecialchars($data);
   return $data;
 } 
+
+$title = "Logga in";
+include("templates/head.php");
 
 ?>
 
@@ -81,17 +92,14 @@ function test_input($data) {
     <input type="password" name="pw" value="<?php echo $pw;?>">
     <span class="error">* <?php echo $pwErr;?></span>
   </p>
-  <br><br>
+
+ <br><br>
   <input type="submit" name="submit" value="Logga in"> 
 </form>
 
 <?php
-echo "<h2>Din inmatning:</h2>";
-echo $username;
-echo "<br>";
-echo $pw;
 
-include("../templates/foot.php");
+include "templates/foot.php";
 
 ?>
 
