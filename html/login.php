@@ -83,18 +83,18 @@ include("templates/head.php");
   
   <p>
     <label for="username"> Användarnamn:</label> 
-    <input type="text" name="username" value="<?php echo $username;?>">
+    <input id="username" type="text" name="username" value="<?php echo $username;?>">
     <span class="error">* <?php echo $usernameErr;?></span>
   </p>
   
   <p>
     <label for="pw"> Lösenord:</label> 
-    <input type="password" name="pw" value="<?php echo $pw;?>">
+    <input id="password" type="password" name="pw" value="<?php echo $pw;?>">
     <span class="error">* <?php echo $pwErr;?></span>
   </p>
 
  <br><br>
-  <input type="submit" name="submit" value="Logga in"> 
+  <input id="submit" type="submit" name="submit" value="Logga in"> 
 </form>
 
 <?php

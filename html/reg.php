@@ -78,23 +78,23 @@ include("templates/head.php");
   
   <p>
     <label for="username"> Användarnamn:</label> 
-    <input type="text" name="username" value="<?php echo $username;?>">
+    <input id="username" type="text" name="username" value="<?php echo $username;?>">
     <span class="error">* <?php echo $usernameErr;?></span>
   </p>
   
   <p>
     <label for="pw"> Lösenord:</label> 
-    <input type="password" name="pw" value="<?php echo $pw;?>">
+    <input id="password" type="password" name="pw" value="<?php echo $pw;?>">
     <span class="error">* <?php echo $pwErr;?></span>
   </p>
 
   <p>
     <label for="pwTest"> Lösenord en gång till:</label> 
-    <input type="password" name="pwTest" value="<?php echo $pwTest;?>">
+    <input id="password" type="password" name="pwTest" value="<?php echo $pwTest;?>">
     <span class="error">* <?php echo $pwTestErr;?></span>
   </p>
   <br><br>
-  <input type="submit" name="submit" value="Registrera"> 
+  <input id="submit" type="submit" name="submit" value="Registrera"> 
 </form>
 
 <?php
